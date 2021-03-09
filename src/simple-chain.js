@@ -2,39 +2,35 @@ const CustomError = require("../extensions/custom-error");
 
 const chainMaker = {
   getLength() {
-    // return this.chain.split('~~').slice(0, -1).length;
+    // return this.chain.length;
     throw new CustomError('Not implemented');
   },
   addLink(value) {
 /*     if (this.chain) {
-      if (typeof value) {
-        this.chain += `( ${value} )~~`;
+      if (typeof value !== 'undefined') {
+        this.chain.push(`( ${value} )`);
       } else {
-        this.chain += `(  )~~`;
+        this.chain.push(`(  )`);
       }
     } else {
-      if (typeof value) {
-        this.chain = `( ${value} )~~`;
+      this.chain = [];
+      if (typeof value !== 'undefined') {
+        this.chain.push(`( ${value} )`);
       } else {
-        this.chain = `(  )~~`;
+        this.chain.push(`(  )`);
       }
     }
+    // console.log(this.chain);
     return this; */
     throw new CustomError('Not implemented');
   },
   removeLink(position) {
+    // console.log(this.chain.slice(0, position - 1));
+    // console.log(this.chain.slice(position));
 /*     if (this.chain && this.getLength() >= position && position) {
-      let separator = '~~';
-      if (!this.chain.split('~~').slice(position, -1).length) {
-        separator = '';
-      }
-      this.chain = this.chain.split('~~').slice(0, position - 1).join('~~') + separator + this.chain.split('~~').slice(position, -1).join('~~');
-      if (this.chain[0] === '~') {
-        this.chain = this.chain.slice(2);
-      }
-      if (this.chain[this.getLength() - 1] !== '~') {
-        this.chain += '~~';
-      }
+      this.chain = this.chain
+        .slice(0, position - 1)
+        .concat(this.chain.slice(position));
       return this;
     } else {
       throw new Error('There is not such a position!');
@@ -43,15 +39,15 @@ const chainMaker = {
   },
   reverseChain() {
 /*     if (this.chain) {
-      this.chain = this.chain.split('~~').slice(0, -1).reverse().join('~~') + '~~';
+      this.chain.reverse();
     }
     return this; */
     throw new CustomError('Not implemented');
   },
   finishChain() {
-    // return this.chain.split('~~').slice(0, -1).join('~~');
+    // return this.chain.join('~~');
     throw new CustomError('Not implemented');
-  }
+  },
 };
 
 module.exports = chainMaker;
@@ -62,6 +58,8 @@ module.exports = chainMaker;
 // console.log(chainMaker.addLink('GHI').addLink(null).reverseChain().addLink(333).reverseChain().reverseChain().addLink(0).reverseChain().reverseChain().addLink('GHI').finishChain());
 // ( null )~~( GHI )~~( 333 )~~( 0 )~~( GHI )
 
-// console.log(chainMaker.addLink(7).addLink(9).addLink(null));
-// console.log(chainMaker.addLink(7).addLink(9).reverseChain());
+// console.log(chainMaker.addLink(7).addLink(9).addLink(null).removeLink(1).finishChain());
+// console.log(chainMaker.addLink(7).addLink(9).reverseChain()/* .finishChain() */);
 // console.log(chainMaker.addLink(3).addLink().addLink(5).removeLink(3).reverseChain().finishChain());
+
+// node src/simple-chain.js
