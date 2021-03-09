@@ -15,9 +15,7 @@ const chainMaker = {
   },
   removeLink(position) {
     if (this.chain && this.getLength() >= position && position) {
-      this.chain = this.chain
-        .slice(0, position - 1)
-        .concat(this.chain.slice(position));
+      this.chain = this.chain.slice(0, position - 1).concat(this.chain.slice(position));
       return this;
     } else {
       throw new Error('There is not such a position!');
