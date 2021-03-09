@@ -1,52 +1,40 @@
-const CustomError = require("../extensions/custom-error");
-
 const chainMaker = {
   getLength() {
-    // return this.chain.length;
-    throw new CustomError('Not implemented');
+    return this.chain.length;
   },
   addLink(value) {
-/*     if (this.chain) {
-      if (typeof value !== 'undefined') {
-        this.chain.push(`( ${value} )`);
-      } else {
-        this.chain.push(`(  )`);
-      }
-    } else {
+    if (!this.chain) {
       this.chain = [];
-      if (typeof value !== 'undefined') {
-        this.chain.push(`( ${value} )`);
-      } else {
-        this.chain.push(`(  )`);
-      }
     }
-    // console.log(this.chain);
-    return this; */
-    throw new CustomError('Not implemented');
+    if (typeof value !== 'undefined') {
+      this.chain.push(`( ${value} )`);
+    } else {
+      this.chain.push(`(  )`);
+    }
+    return this;
+    // throw new CustomError('Not implemented');
   },
   removeLink(position) {
-    // console.log(this.chain.slice(0, position - 1));
-    // console.log(this.chain.slice(position));
-/*     if (this.chain && this.getLength() >= position && position) {
+    if (this.chain && this.getLength() >= position && position) {
       this.chain = this.chain
         .slice(0, position - 1)
         .concat(this.chain.slice(position));
       return this;
     } else {
       throw new Error('There is not such a position!');
-    } */
-    throw new CustomError('Not implemented');
+    }
+    // throw new CustomError('Not implemented');
   },
   reverseChain() {
-/*     if (this.chain) {
+    if (this.chain) {
       this.chain.reverse();
     }
-    return this; */
-    throw new CustomError('Not implemented');
+    return this;
+    // throw new CustomError('Not implemented');
   },
   finishChain() {
-    // return this.chain.join('~~');
-    throw new CustomError('Not implemented');
+    return this.chain.join('~~');
+    // throw new CustomError('Not implemented');
   },
 };
 
