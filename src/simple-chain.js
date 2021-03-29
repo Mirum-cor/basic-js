@@ -14,10 +14,17 @@ const chainMaker = {
     return this;
   },
   removeLink(position) {
-    if (this.chain && this.getLength() >= position && position) {
-      this.chain = this.chain.slice(0, position - 1).concat(this.chain.slice(position));
+    if (this.chain && this.getLength() >= position && position >= 0) {
+      if (position) {
+        const firstPart = this.chain.slice(0, position - 1);
+        const secondPart = this.chain.slice(position);
+        this.chain = firstPart.concat(secondPart);       
+      } else {
+        this.chain = this.chain.slice(1);
+      }
       return this;
     } else {
+      this.chain = [];
       throw new Error('There is not such a position!');
     }
   },
@@ -28,7 +35,9 @@ const chainMaker = {
     return this;
   },
   finishChain() {
-    return this.chain.join('~~');
+    const result = this.chain.join('~~');
+    this.chain = [];
+    return result;
   },
 };
 
