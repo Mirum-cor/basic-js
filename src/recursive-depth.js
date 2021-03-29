@@ -1,6 +1,9 @@
 module.exports = class DepthCalculator {
   constructor() {
     this.counter = 1;
+    this.step = 1;
+    this.result = [];
+    this.finalDepth = 0;
   }
   calculateDepth(arr) {
     const depthArr = [];
@@ -15,8 +18,17 @@ module.exports = class DepthCalculator {
     });
     if (depthArr.length) {
       this.counter++;
+      this.step++;
       this.calculateDepth(depthArr);
     }
-    return this.counter;
+    this.result.push(this.counter);
+    this.step--;
+    if (!this.step) {
+      this.finalDepth = Math.max(...this.result);
+      this.counter = 1;
+      this.step = 1;
+      this.result = [];
+    }
+    return this.finalDepth;
   }
 };
